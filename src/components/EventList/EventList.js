@@ -11,8 +11,6 @@ function EventList() {
 
     const params = useParams();
 
-    console.log(params.id);
-
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
@@ -23,7 +21,6 @@ function EventList() {
         axios.get('http://localhost:8080/events')
             .then(response => {
                     setEvents(response.data);
-                    console.log(response.data);
                 }
             );
     }
