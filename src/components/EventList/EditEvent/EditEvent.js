@@ -2,7 +2,7 @@ import './EditEvent.scss'
 import "react-datepicker/dist/react-datepicker.css";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 function EditEvent() {
 
@@ -13,12 +13,11 @@ function EditEvent() {
     const [participantsCount, setParticipantsCount] = useState(0);
     const [eventCapacity, setEventCapacity] = useState(0);
 
-    console.log(eventName);
 
     const getEvent = () => {
         axios.get(`http://localhost:8080/events/${id}`)
             .then(response => {
-                console.log(response.data);
+                console.log(response);
                 setEventName(response.data.eventName);
                 setEventStartDate(response.data.eventStartDate);
                 setEventEndDate(response.data.eventEndDate);
@@ -37,7 +36,12 @@ function EditEvent() {
             eventCapacity: eventCapacity
         })
             .then(response => {
-                    console.log(response.data);
+                    if (response.status === 200) {
+                        alert("Event updated successfully");
+                    }
+                    else {
+                        alert("Error");
+                    }
                 }
             );
     }
@@ -82,7 +86,9 @@ function EditEvent() {
                        onChange={e => setEventCapacity(e.target.valueAsNumber)}/>
             </div>
             <div className="edit-event-button">
-                <button onClick={updateEvent}>Update Event</button>
+                <Link to={`/`}>
+                    <button onClick={updateEvent} disabled={!eventName || !eventCapacity || !participantsCount || !eventStartDate || !eventEndDate }>Update Event</button>
+                </Link>
             </div>
         </div>
     );

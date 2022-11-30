@@ -2,6 +2,7 @@ import './AddEvent.scss'
 import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import axios from "axios";
+import {Link} from "react-router-dom";
 
 function AddEvent() {
 
@@ -20,7 +21,12 @@ function AddEvent() {
             eventCapacity: eventCapacity
         })
             .then(response => {
-                    console.log(response.data);
+                    if (response.status === 200) {
+                        alert("Event added successfully");
+                    }
+                    else {
+                        alert("Error");
+                    }
                 }
             );
     }
@@ -36,26 +42,32 @@ function AddEvent() {
             </div>
             <div className="add-event-entity">
                 <h3>Event Start Date:</h3>
-                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY" value={eventStartDate || ""}
+                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY"
+                       value={eventStartDate || ""}
                        onChange={e => setEventStartDate(e.target.value)}/>
             </div>
             <div className="add-event-entity">
                 <h3>Event End Date:</h3>
-                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY" value={eventEndDate || ""}
+                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY"
+                       value={eventEndDate || ""}
                        onChange={e => setEventEndDate(e.target.value)}/>
             </div>
             <div className="add-event-entity">
                 <h3>Event Participant:</h3>
-                <input className="add-event-input" type="number" placeholder="Enter Participant Number:" value={participantsCount || ""}
+                <input className="add-event-input" type="number" placeholder="Enter Participant Number:"
+                       value={participantsCount || ""}
                        onChange={e => setParticipantsCount(e.target.valueAsNumber)}/>
             </div>
             <div className="add-event-entity">
                 <h3>Event Capacity</h3>
-                <input className="add-event-input" type="number" placeholder="Enter event name" value={eventCapacity || ""}
+                <input className="add-event-input" type="number" placeholder="Enter event name"
+                       value={eventCapacity || ""}
                        onChange={e => setEventCapacity(e.target.valueAsNumber)}/>
             </div>
             <div className="add-event-button">
-                <button onClick={addEvent}>Add Event</button>
+                <Link to={`/`}>
+                    <button onClick={addEvent} disabled={!eventName || !eventCapacity || !participantsCount || !eventStartDate || !eventEndDate }>Add Event</button>
+                </Link>
             </div>
         </div>
     );

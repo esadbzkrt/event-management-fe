@@ -11,8 +11,14 @@ function SingleEvent(props) {
     const deleteEvent = () => {
         axios.delete(`http://localhost:8080/events/${props.event.id}`)
             .then(response => {
-                console.log(response);
-                getEvents();
+                if (response.status === 200) {
+                    alert("Event deleted successfully");
+                    getEvents();
+                }
+                else {
+                    alert("Error");
+                }
+
             });
     }
 
