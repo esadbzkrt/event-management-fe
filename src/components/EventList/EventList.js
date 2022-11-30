@@ -17,7 +17,7 @@ function EventList() {
 
     useEffect(() => {
         getEvents();
-    }, []);
+    }, [events]);
 
     const getEvents = () => {
         axios.get('http://localhost:8080/events')
