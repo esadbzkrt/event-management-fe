@@ -2,7 +2,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import EventList from "./components/EventList/EventList";
 import AddEvent from "./components/EventList/AddEvent/AddEvent";
-import EditEvent from "./components/EventList/AddEvent/AddEvent";
+import EditEvent from "./components/EventList/EditEvent/EditEvent";
 import {
     BrowserRouter as Router,
     Routes,
@@ -16,8 +16,8 @@ function App() {
         <Router>
             <Routes>
                 <Route path="/" exact element={<EventList />} />
-                <Route path="/add" element={<AddEvent />} />
-                <Route path="/edit" element={<EditEvent />} />
+                <Route path="/add" exact element={<AddEvent />} />
+                <Route path="/edit/:id" exact element={<EditEvent />} />
             </Routes>
         </Router>
 

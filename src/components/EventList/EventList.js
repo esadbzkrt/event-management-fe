@@ -4,8 +4,14 @@ import {IoMdAddCircleOutline} from 'react-icons/io';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {MainContext} from "../../context";
+import {useParams} from "react-router-dom";
+
 
 function EventList() {
+
+    const params = useParams();
+
+    console.log(params.id);
 
     const [events, setEvents] = useState([]);
 
@@ -27,6 +33,7 @@ function EventList() {
         setEvents,
         getEvents
     };
+
 
     return (
         <MainContext.Provider value={data}>

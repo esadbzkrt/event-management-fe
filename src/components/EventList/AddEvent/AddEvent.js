@@ -1,21 +1,16 @@
 import './AddEvent.scss'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 
-function AddEvent(props) {
+function AddEvent() {
     const [eventName, setEventName] = useState("");
-    const [startDate, setStartDate] = useState(new Date());
-    const [endDate, setEndDate] = useState(new Date());
+    const [startDate, setStartDate] = useState("");
+    const [endDate, setEndDate] = useState("");
     const [eventParticipant, setEventParticipant] = useState(0);
     const [eventCapacity, setEventCapacity] = useState(0);
 
-    useEffect(() => {
-            console.log(startDate);
-
-        }
-        , [startDate]);
 
     const addEvent = () => {
         axios.post('http://localhost:8080/events', {
