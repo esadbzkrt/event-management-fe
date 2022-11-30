@@ -1,21 +1,43 @@
 .add-event{
-  display: flex;
-  flex-direction: column;
-  border: 1px solid royalblue;
-  &-entity{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+
+    &-entity{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+
+        input{
+            width: 200px;
+            height: 30px;
+            margin: 10px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+
+        }
+    }
     &-button{
         display: flex;
         justify-content: center;
         align-items: center;
         margin-top: 20px;
+        button{
+            width: 100px;
+            height: 30px;
+            margin: 10px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
     }
-  button{
-    height: 48px;
-    width: 100px;
-  }
+    button{
+        height: 48px;
+        width: 100px;
+    }
 }

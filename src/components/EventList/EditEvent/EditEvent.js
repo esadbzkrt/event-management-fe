@@ -29,7 +29,7 @@ function EditEvent() {
 
 
     function updateEvent() {
-            axios.put('http://localhost:8080/events/' + id, {
+        axios.put('http://localhost:8080/events/' + id, {
             eventName: eventName,
             eventStartDate: eventStartDate,
             eventEndDate: eventEndDate,
@@ -48,34 +48,40 @@ function EditEvent() {
         , [id]);
 
     return (
-        <div className="add-event">
+        <div className="edit-event">
             <h3> Edit Event </h3>
-            <div className="add-event-entity">
-                <h3>Event Name:</h3>
-                <input className="add-event-input" type="text" placeholder="Enter event name" value={eventName || ""}
+            <div className="edit-event-entity">
+                <div className="edit-event-entity-name">
+                    <h3>Event Name:</h3>
+                </div>
+                <input className="edit-event-input" type="text" placeholder="Enter event name" value={eventName || ""}
                        onChange={e => setEventName(e.target.value)}/>
             </div>
-            <div className="add-event-entity">
+            <div className="edit-event-entity">
                 <h3>Event Start Date:</h3>
-                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY" value={eventStartDate || ""}
+                <input className="edit-event-input" type="text" placeholder="Start Date DD/MM/YYY"
+                       value={eventStartDate || ""}
                        onChange={e => setEventStartDate(e.target.value)}/>
             </div>
-            <div className="add-event-entity">
+            <div className="edit-event-entity">
                 <h3>Event End Date:</h3>
-                <input className="add-event-input" type="text" placeholder="End Date DD/MM/YYY" value={eventEndDate || ""}
+                <input className="edit-event-input" type="text" placeholder="End Date DD/MM/YYY"
+                       value={eventEndDate || ""}
                        onChange={e => setEventEndDate(e.target.value)}/>
             </div>
-            <div className="add-event-entity">
+            <div className="edit-event-entity">
                 <h3>Event Participant:</h3>
-                <input className="add-event-input" type="number" placeholder="Enter Participant Number:" value={participantsCount || ""}
+                <input className="edit-event-input" type="number" placeholder="Enter Participant Number:"
+                       value={participantsCount || ""}
                        onChange={e => setParticipantsCount(e.target.valueAsNumber)}/>
             </div>
-            <div className="add-event-entity">
+            <div className="edit-event-entity">
                 <h3>Event Capacity</h3>
-                <input className="add-event-input" type="number" placeholder="Enter event name" value={eventCapacity || ""}
+                <input className="add-event-input" type="number" placeholder="Enter event name"
+                       value={eventCapacity || ""}
                        onChange={e => setEventCapacity(e.target.valueAsNumber)}/>
             </div>
-            <div className="add-event-button">
+            <div className="edit-event-button">
                 <button onClick={updateEvent}>Update Event</button>
             </div>
         </div>

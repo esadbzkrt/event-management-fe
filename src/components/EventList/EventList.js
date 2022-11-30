@@ -4,7 +4,7 @@ import {IoMdAddCircleOutline} from 'react-icons/io';
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {MainContext} from "../../context";
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 
 function EventList() {
@@ -34,13 +34,16 @@ function EventList() {
         getEvents
     };
 
-
     return (
         <MainContext.Provider value={data}>
             <div className="event-list">
                 <div className="event-list-header">
                     <h3>Event List</h3>
-                    <IoMdAddCircleOutline size="24px"/>
+                    <div className="event-list-add">
+                        <Link to={`/add`}>
+                            <IoMdAddCircleOutline size="24px"/>
+                        </Link>
+                    </div>
                 </div>
                 {events.map(event => <SingleEvent key={event.id} event={event}/>)}
             </div>

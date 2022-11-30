@@ -1,23 +1,22 @@
 import './AddEvent.scss'
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {useState} from "react";
 import axios from "axios";
 
 function AddEvent() {
-    const [eventName, setEventName] = useState("");
-    const [startDate, setStartDate] = useState("");
-    const [endDate, setEndDate] = useState("");
-    const [eventParticipant, setEventParticipant] = useState(0);
-    const [eventCapacity, setEventCapacity] = useState(0);
 
+    const [eventName, setEventName] = useState("");
+    const [eventStartDate, setEventStartDate] = useState("");
+    const [eventEndDate, setEventEndDate] = useState("");
+    const [participantsCount, setParticipantsCount] = useState(0);
+    const [eventCapacity, setEventCapacity] = useState(0);
 
     const addEvent = () => {
         axios.post('http://localhost:8080/events', {
             eventName: eventName,
-            eventStartDate: startDate,
-            eventEndDate: endDate,
-            participantsCount: eventParticipant,
+            eventStartDate: eventStartDate,
+            eventEndDate: eventEndDate,
+            participantsCount: participantsCount,
             eventCapacity: eventCapacity
         })
             .then(response => {
@@ -37,21 +36,23 @@ function AddEvent() {
             </div>
             <div className="add-event-entity">
                 <h3>Event Start Date:</h3>
-                <DatePicker selected={startDate} onChange={date => setStartDate(date)}/>
+                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY" value={eventStartDate || ""}
+                       onChange={e => setEventStartDate(e.target.value)}/>
             </div>
             <div className="add-event-entity">
                 <h3>Event End Date:</h3>
-                <DatePicker selected={endDate} onChange={date => setEndDate(date)}/>
+                <input className="add-event-input" type="text" placeholder="Start Date DD/MM/YYY" value={eventEndDate || ""}
+                       onChange={e => setEventEndDate(e.target.value)}/>
             </div>
             <div className="add-event-entity">
                 <h3>Event Participant:</h3>
-                <input className="add-event-input" type="tel" placeholder="Enter Participant Number:" value={eventParticipant}
-                       onChange={e => setEventParticipant(e.target.value)}/>
+                <input className="add-event-input" type="number" placeholder="Enter Participant Number:" value={participantsCount || ""}
+                       onChange={e => setParticipantsCount(e.target.valueAsNumber)}/>
             </div>
             <div className="add-event-entity">
                 <h3>Event Capacity</h3>
-                <input className="add-event-input" type="tel" placeholder="Enter event name" value={eventCapacity}
-                       onChange={e => setEventCapacity(e.target.value)}/>
+                <input className="add-event-input" type="number" placeholder="Enter event name" value={eventCapacity || ""}
+                       onChange={e => setEventCapacity(e.target.valueAsNumber)}/>
             </div>
             <div className="add-event-button">
                 <button onClick={addEvent}>Add Event</button>

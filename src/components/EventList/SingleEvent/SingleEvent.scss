@@ -7,4 +7,16 @@
   margin-top: 20px;
   padding: 0 20px;
   box-sizing: border-box;
+  border: 1px solid #ccc;
+  &-name{
+    width: 50%;
+    text-align: left;
+  }
+  &-date{
+    display: flex;
+    text-align: left;
+  }
+  &-participants{
+    display: flex;
+  }
 }
